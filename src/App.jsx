@@ -1,0 +1,39 @@
+import { useState } from "react";
+import TaskInput from "./components/TaskInput";
+import TaskList from "./components/TaskList";
+
+function App() {
+  const [tasks, setTasks] = useState([]);
+
+  // Add a new task
+  const addTask = (task) => {
+    if (task.trim() === "") return;
+    setTasks([...tasks, { id: Date.now(), text: task, completed: false }]);
+  };
+
+  // Toggle completion
+  const toggleTask = (id) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+
+  // Delete task
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="text-center">
+        <h1 className="text-3xl font-bold mb-6">✅ To-Do List</h1>
+        <TaskInput addTask={addTask} />
+        <TaskList tasks={tasks} toggleTask={toggleTask} deleteTask={deleteTask} />
+      </div>
+    </div>
+  );
+}
+
+export default App;
