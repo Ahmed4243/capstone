@@ -1,26 +1,36 @@
+// src/components/TaskInput.jsx
 import { useState } from "react";
 
 function TaskInput({ addTask }) {
-  const [input, setInput] = useState("");
+  const [text, setText] = useState("");
+  const [dueDate, setDueDate] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addTask(input);
-    setInput("");
+    if (!text.trim()) return;
+    addTask(text, dueDate);
+    setText("");
+    setDueDate("");
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2 mb-6">
+    <form onSubmit={handleSubmit} className="flex gap-2 mb-4">
       <input
         type="text"
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="Enter a task..."
-        className="flex-1 px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+        placeholder="✍️ Add a new task..."
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        className="flex-1 p-2 border rounded"
+      />
+      <input
+        type="date"
+        value={dueDate}
+        onChange={(e) => setDueDate(e.target.value)}
+        className="p-2 border rounded"
       />
       <button
         type="submit"
-        className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
+        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
       >
         Add
       </button>
