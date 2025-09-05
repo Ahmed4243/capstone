@@ -40,3 +40,22 @@
 .read-the-docs {
   color: #888;
 }
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: white; /* same as bg-gray-100 */
+}
+
+.todo-card {
+  width: 100%;
+  max-width: 28rem; /* ~max-w-md */
+  padding: 1.5rem;
+  background: white;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+
